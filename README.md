@@ -18,7 +18,7 @@
           }
 
 
-## 游戏的scheme格式
+## 你的应用的scheme格式
 
         org.dplatform.game.你的站点.你的应用包名
 
@@ -91,3 +91,11 @@
 
           //发送请求
           api.sendReq();
+
+
+## 扩展：
+
+        如果你想使用其他scheme：
+        第一步： 替换manifest里的scheme
+        第二步： api.putParameter("scheme", "xxxxxxx");//传递你的scheme
+
