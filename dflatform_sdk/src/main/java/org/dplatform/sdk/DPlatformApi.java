@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.dplatform.sdk.Constant.CALLBACK_SCHEME;
+import static org.dplatform.sdk.Constant.PLATFORM_APP_DOWNLOAD_URL_PRO;
 import static org.dplatform.sdk.Constant.PLATFORM_APP_DOWNLOAD_URL_RELEASE;
 import static org.dplatform.sdk.Constant.PLATFORM_APP_DOWNLOAD_URL_TEST;
 import static org.dplatform.sdk.Constant.PLATFORM_PACKAGE_NAME;
@@ -67,6 +68,8 @@ public final class DPlatformApi {
     String getPlatformDownloadUrl() {
         if (DPlatformEvn.TEST.equals(evn)) {
             return String.format(PLATFORM_APP_DOWNLOAD_URL_TEST, site);
+        } else if (DPlatformEvn.PRO.equals(evn)) {
+            return String.format(PLATFORM_APP_DOWNLOAD_URL_PRO, site);
         } else {
             return String.format(PLATFORM_APP_DOWNLOAD_URL_RELEASE, site);
         }
