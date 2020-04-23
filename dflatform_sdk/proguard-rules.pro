@@ -166,29 +166,28 @@
    public static *** i(...);
    public static *** w(...);
  }
-
  -keep class org.dplatform.sdk.Constant  {
     *;
  }
- -keep class org.dplatform.sdk.CryptUtils  {
-     *;
+ -keep class org.dplatform.sdk.DataModel  {
+      *;
  }
  -keepattributes ** -keep class org.dplatform.sdk.DPlatformApi{
-    public <methods>;
-  }
- -keepattributes ** -keep class org.dplatform.sdk.DPlatformApi2{
-    public <methods>;
-  }
+     public <methods>;
+ }
  -keep class org.dplatform.sdk.DPlatformApiCallback  {
-     *;
-  }
- -keep class org.dplatform.sdk.DPlatformApiCallback2  {
      *;
   }
  -keep class org.dplatform.sdk.DPlatformApiFactory  {
     *;
  }
- -keep class org.dplatform.sdk.DPlatformResp  {
+ -keep class org.dplatform.sdk.NullCheck  {
+     *;
+  }
+ -keep class org.dplatform.sdk.OnUriIsNullListener  {
+        *;
+ }
+ -keep class org.dplatform.sdk.PayModel  {
      *;
  }
 -keep class org.dplatform.sdk.Utils  {
