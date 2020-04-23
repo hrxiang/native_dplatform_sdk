@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         //传递参数
-        api.putParameter("action", "pay");
-        api.putParameter("orderSn", "10001");
+        api.putParameter("action", "auth");
         api.putParameter("token", "9527");
+        api.putParameter("isMock", 1);
 
         //响应结果监听
         api.setCallback(new DPlatformApiCallback() {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private void submitOrder1() {
         //传递参数
         api.putParameter("action", "pay");
-        api.putParameter("orderSn", "1");
+        api.putParameter("orderSn", "no1");
         api.putParameter("token", "9527");
         //发送请求
         api.sendReq();
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private void submitOrder2() {
         //传递参数
         PayModel model = new PayModel();
-        model.setOrderSn("2");
+        model.setOrderSn("no2");
         model.setToken("9527");
         api.putModel(model);
         //发送请求
