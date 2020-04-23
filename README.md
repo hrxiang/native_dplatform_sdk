@@ -3,7 +3,9 @@
 
 [![](https://jitpack.io/v/hrxiang/native_dplatform_sdk.svg)](https://jitpack.io/#hrxiang/native_dplatform_sdk)
 
-implementation 'com.github.hrxiang:native_dplatform_sdk:Tag'
+##
+
+          implementation 'com.github.hrxiang:native_dplatform_sdk:Tag'
 
 ## step 1
 
