@@ -14,7 +14,7 @@
           }
 
           dependencies {
-          	  implementation 'com.github.hrxiang:native_dplatform_sdk:Tag'
+               implementation 'com.github.hrxiang:native_dplatform_sdk:Tag'
           }
 
 
@@ -33,7 +33,7 @@
                    <category android:name="android.intent.category.LAUNCHER" />
                </intent-filter>
                <intent-filter>
-                   <data android:scheme="org.dplatform.game.你的站点.${applicationId}" />
+                   <data android:scheme="”“”org.dplatform.game.你的站点.${applicationId}“”“" />
 
                    <action android:name="android.intent.action.VIEW" />
 
@@ -58,9 +58,8 @@
            api.setCallback(new DPlatformApiCallback() {
                @Override
                public void onResult(JSONObject object) {
-$\color{#FF3030}{red}$
-<span style="color: red"> Some red text </span>
-              }
+
+               }
            });
 
 ## step 4：覆盖activity的onNewIntent方法
