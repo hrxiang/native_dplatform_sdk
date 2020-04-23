@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final TextView text = findViewById(R.id.text);
 
-        //创建api，并设置站点
-        api = DPlatformApiFactory.createApi(this, "ls", null, null);
+        //创建api，并设置站点 org.dplatform.game.cs
+        api = DPlatformApiFactory.createApi(this, "cs", null, null);
 
 
         //传递参数
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         api.setCallback(new DPlatformApiCallback() {
             @Override
             public void onResult(JSONObject object) {
-
+                text.setText(object.toString());
             }
         });
 
