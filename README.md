@@ -22,10 +22,10 @@
            //创建api，并设置站点
            api = DPlatformApiFactory.createApi(this, "ls", null, null);
 
-           第1个参数上下文（必传）
-           第2个参数站点（必传）
-           第3个参数你的scheme
-           第4个参数平台环境 DPlatformEvn.class
+           第1个参数：上下文（必传）
+           第2个参数：站点（必传）
+           第3个参数：你的scheme
+           第4个参数：平台环境（DPlatformEvn.class）
 
 
 ## step 3
