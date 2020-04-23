@@ -14,7 +14,6 @@ import org.dplatform.sdk.PayModel;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-
     DPlatformApi api;
 
     @Override
@@ -25,13 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
         //创建api，并设置站点 org.dplatform.game.cs
         api = DPlatformApiFactory.createApi(this, "cs", null);
-
-
-        //传递参数
-        api.putParameter("action", "auth");
-        api.putParameter("token", "9527");
-        api.putParameter("isMock", 1);
-
         //响应结果监听
         api.setCallback(new DPlatformApiCallback() {
             @Override
@@ -39,16 +31,14 @@ public class MainActivity extends AppCompatActivity {
                 text.setText(object.toString());
             }
         });
-
         //提交订单10001
         findViewById(R.id.bt_auth).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //发送请求
-                api.sendReq();
+                submitOrder1();
+                //  submitOrder2();
             }
         });
-
     }
 
     /**
@@ -57,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private void submitOrder1() {
         //传递参数
         api.putParameter("action", "pay");
-        api.putParameter("orderSn", "no1");
         api.putParameter("token", "9527");
+        api.putParameter("orderSn", "no10086");
         //发送请求
         api.sendReq();
     }
@@ -69,9 +59,8 @@ public class MainActivity extends AppCompatActivity {
     private void submitOrder2() {
         //传递参数
         PayModel model = new PayModel();
-        model.setOrderSn("no2");
         model.setToken("9527");
-        model.setScheme("org.dplatform.game");
+        model.setOrderSn("no10086");
         api.putModel(model);
         //发送请求
         api.sendReq();
