@@ -33,7 +33,7 @@
                    <category android:name="android.intent.category.LAUNCHER" />
                </intent-filter>
                <intent-filter>
-                   <data android:scheme="”“”org.dplatform.game.你的站点.${applicationId}“”“" />
+                   <data android:scheme="org.dplatform.game.你的站点.${applicationId}" />
 
                    <action android:name="android.intent.action.VIEW" />
 
