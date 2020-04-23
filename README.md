@@ -1,3 +1,5 @@
+maven { url 'https://jitpack.io' }
+
 ## step 1
 
            <activity
