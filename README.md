@@ -3,12 +3,24 @@
 
 [![](https://jitpack.io/v/hrxiang/native_dplatform_sdk.svg)](https://jitpack.io/#hrxiang/native_dplatform_sdk)
 
-##
+## 引入SDK
 
 
-          引入sdk： implementation 'com.github.hrxiang:native_dplatform_sdk:Tag'
+          allprojects {
+              repositories {
+                    ...
+                  maven { url 'https://jitpack.io' }
+              }
+          }
 
-          游戏的scheme格式：org.dplatform.game.你的站点
+          dependencies {
+          	        implementation 'com.github.hrxiang:native_dplatform_sdk:Tag'
+          }
+
+
+## 游戏scheme格式
+
+        org.dplatform.game.你的站点
 
 
 ## step 1
@@ -37,7 +49,7 @@
 
            第1个参数：上下文（必传）
            第2个参数：站点（必传）
-           第4个参数：平台环境（DPlatformEvn.class），默认为生产环境
+           第3个参数：平台环境（DPlatformEvn.class），默认为生产环境
 
 
 ## step 3
