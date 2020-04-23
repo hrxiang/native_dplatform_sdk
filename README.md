@@ -53,13 +53,13 @@
 
 ## step 3：获取平台返回的数据
 
-$\color{#FF3030}{red}$
 
            //响应结果监听
            api.setCallback(new DPlatformApiCallback() {
                @Override
                public void onResult(JSONObject object) {
-
+$\color{#FF3030}{red}$
+<span style="color: red"> Some red text </span>
               }
            });
 
