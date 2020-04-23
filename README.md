@@ -14,7 +14,7 @@
           }
 
           dependencies {
-          	  implementation 'com.github.hrxiang:native_dplatform_sdk:Tag'
+               implementation 'com.github.hrxiang:native_dplatform_sdk:Tag'
           }
 
 
@@ -53,12 +53,13 @@
 
 ## step 3：获取平台返回的数据
 
+
            //响应结果监听
            api.setCallback(new DPlatformApiCallback() {
                @Override
                public void onResult(JSONObject object) {
 
-              }
+               }
            });
 
 ## step 4：覆盖activity的onNewIntent方法
