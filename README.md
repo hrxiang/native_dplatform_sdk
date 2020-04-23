@@ -53,6 +53,8 @@
 
 ## step 3：获取平台返回的数据
 
+<span style="color: red"> Some red text </span>
+
            //响应结果监听
            api.setCallback(new DPlatformApiCallback() {
                @Override
