@@ -83,7 +83,7 @@ public final class DPlatformApi {
     }
 
     private String getDefaultCallbackScheme() {
-        return String.format(DEFAULT_CALLBACK_SCHEME, site);
+        return String.format(DEFAULT_CALLBACK_SCHEME, site, packageName);
     }
 
     private Activity getActivity() {

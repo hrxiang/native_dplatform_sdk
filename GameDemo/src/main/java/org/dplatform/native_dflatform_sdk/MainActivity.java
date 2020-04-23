@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         PayModel model = new PayModel();
         model.setOrderSn("no2");
         model.setToken("9527");
+        model.setScheme("org.dplatform.game");
         api.putModel(model);
         //发送请求
         api.sendReq();

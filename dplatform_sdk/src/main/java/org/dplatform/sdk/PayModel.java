@@ -13,4 +13,9 @@ public class PayModel extends DataModel {
     public void setOrderSn(String orderSn) {
         put("orderSn", NullCheck.nonNull(orderSn, "orderSn is null!"));
     }
+
+    public void setScheme(String scheme) {
+        put("scheme", scheme);
+    }
+
 }

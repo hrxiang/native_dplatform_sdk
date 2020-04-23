@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -16,7 +17,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     String callbackScheme = null;
+    String defaultScheme = null;
     String packageName = null;
+    JSONObject object = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
             if (null != uri) {
                 callbackScheme = uri.getQueryParameter("callbackScheme");
                 packageName = uri.getQueryParameter("packageName");
+                try {
+                    object = new JSONObject(uri.getQueryParameter("params"));
+                    defaultScheme = object.optString("scheme");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 text.setText("收到：" + Uri.decode(uri.toString()));
             }
         }
@@ -35,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_login1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openUri(MainActivity.this, "org.dplatform.game.cs://do?action=login&code=0&msg=通过首页scheme传递数据");
+                if (null != defaultScheme) {
+                    openUri(MainActivity.this, defaultScheme + "://do?action=login&code=0&msg=通过首页scheme传递数据");
+                }
                 finish();
             }
         });

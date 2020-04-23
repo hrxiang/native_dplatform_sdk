@@ -20,8 +20,7 @@
 
 ## 游戏的scheme格式
 
-        org.dplatform.game.你的站点
-
+        org.dplatform.game.你的站点.你的应用包名
 
 ## step 1：添加你的scheme到manifest
 
@@ -34,7 +33,7 @@
                    <category android:name="android.intent.category.LAUNCHER" />
                </intent-filter>
                <intent-filter>
-                   <data android:scheme="org.dplatform.game.你的站点" />
+                   <data android:scheme="org.dplatform.game.你的站点.${applicationId}" />
 
                    <action android:name="android.intent.action.VIEW" />
 
