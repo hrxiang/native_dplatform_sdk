@@ -1,32 +1,60 @@
-# native_dplatform_sdk
+## step 1
 
-## 1,
+           <activity
+               android:name="org.dplatform.native_dflatform_sdk.MainActivity"
+               android:launchMode="singleTop">
+               <intent-filter>
+                   <action android:name="android.intent.action.MAIN" />
 
-               //创建api，并设置站点
-               api = DPlatformApiFactory.createApi(this, "ls", null, null);
+                   <category android:name="android.intent.category.LAUNCHER" />
+               </intent-filter>
+               <intent-filter>
+                   <data android:scheme="你的scheme" />
 
-               注： 第一个参数上下文，必传
-                   第二个参数站点，必传
-                   第三个参数你的scheme
-                   第二个参数平台环境
+                   <action android:name="android.intent.action.VIEW" />
+
+                   <category android:name="android.intent.category.DEFAULT" />
+               </intent-filter>
+           </activity>
+
+## step 2
+
+           //创建api，并设置站点
+           api = DPlatformApiFactory.createApi(this, "ls", null, null);
+
+           第1个参数上下文（必传）
+           第2个参数站点（必传）
+           第3个参数你的scheme
+           第4个参数平台环境
 
 
-## 2,
-               //响应结果监听
-               api.setCallback(new DPlatformApiCallback() {
-                   @Override
-                   public void onResult(JSONObject object) {
+## step 3
 
-                   }
-               });
+           //响应结果监听
+           api.setCallback(new DPlatformApiCallback() {
+               @Override
+               public void onResult(JSONObject object) {
+
+              }
+           });
 
 
-## 3,
-               //传递参数
-               api.putParameter("action", "auth");
-               api.putParameter("token", "9527");
-               api.putParameter("isMock", 1);
+## step 4
 
-## 4,
-               //发送请求
-                api.sendReq();
+          //传递参数
+          api.putParameter("action", "auth");
+          api.putParameter("token", "9527");
+          api.putParameter("isMock", 1);
+
+## step 5
+
+          @Override
+          protected void onNewIntent(Intent intent) {
+              super.onNewIntent(intent);
+              api.onNewIntent(intent);
+          }
+
+## step 6
+
+          //发送请求
+          api.sendReq();
