@@ -20,6 +20,6 @@ public class DPlatformApiFactory {
      * @return DPlatformApi
      */
     public static DPlatformApi createApi(Activity activity, String site, String scheme, DPlatformEvn evn) {
-        return api = new DPlatformApi(new WeakReference<>(NullCheck.nonNull(activity, "activity is null!")), NullCheck.nonNull(site, "site is null!"), scheme, evn);
+        return api = new DPlatformApi(new WeakReference<>(NullCheck.nonNull(activity, "activity is null!")), NullCheck.nonNull(site, "site is null!"), scheme, activity.getPackageName(), evn);
     }
 }

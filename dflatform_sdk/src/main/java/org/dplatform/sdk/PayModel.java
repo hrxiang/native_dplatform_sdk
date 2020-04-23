@@ -1,20 +1,16 @@
 package org.dplatform.sdk;
 
 public class PayModel extends DataModel {
-    private String token;
-    private String orderSn;
 
-    public PayModel(String token, String orderSn) {
+    public PayModel() {
         super("pay");
-        this.token = NullCheck.nonNull(token, "token is null!");
-        this.orderSn = NullCheck.nonNull(orderSn, "orderSn is null!");
     }
 
-    public String getToken() {
-        return token;
+    public void setToken(String token) {
+        put("token", NullCheck.nonNull(token, "token is null!"));
     }
 
-    public String getOrderSn() {
-        return orderSn;
+    public void setOrderSn(String orderSn) {
+        put("orderSn", NullCheck.nonNull(orderSn, "orderSn is null!"));
     }
 }

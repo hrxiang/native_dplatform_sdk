@@ -13,8 +13,6 @@ import org.dplatform.sdk.DPlatformApiFactory;
 import org.dplatform.sdk.PayModel;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
 public class MainActivity extends AppCompatActivity {
 
     DPlatformApi api;
@@ -33,10 +31,6 @@ public class MainActivity extends AppCompatActivity {
         api.putParameter("action", "pay");
         api.putParameter("orderSn", "10001");
         api.putParameter("token", "9527");
-
-        api.putParamsMap(new HashMap<String, Object>());
-
-        api.putParamsModel(new PayModel("9527", "111"));
 
         //响应结果监听
         api.setCallback(new DPlatformApiCallback() {
@@ -74,9 +68,10 @@ public class MainActivity extends AppCompatActivity {
      **/
     private void submitOrder2() {
         //传递参数
-        api.putParameter("action", "pay");
-        api.putParameter("orderSn", "2");
-        api.putParameter("token", "9527");
+        PayModel model = new PayModel();
+        model.setOrderSn("2");
+        model.setToken("9527");
+        api.putModel(model);
         //发送请求
         api.sendReq();
     }

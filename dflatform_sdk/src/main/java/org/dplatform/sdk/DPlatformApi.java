@@ -27,35 +27,29 @@ public final class DPlatformApi {
     private String scheme;
     private DPlatformEvn evn;
 
-    DPlatformApi(WeakReference<Activity> reference, String site, String scheme, DPlatformEvn evn) {
+    DPlatformApi(WeakReference<Activity> reference, String site, String scheme, String packageName, DPlatformEvn evn) {
         this.reference = reference;
         this.site = site.toLowerCase();
         this.scheme = scheme;
         this.evn = evn;
-        this.builder = createUriBuilder();
-        if (null != getActivity()) {
-            this.packageName = getActivity().getPackageName();
-        }
+        this.packageName = packageName;
+        this.builder = newUriBuilder();
     }
 
     public void putParameter(String key, Object value) {
         params.put(key, value);
     }
 
-    public void putParamsMap(Map<String, Object> map) {
-        params.putAll(map);
-    }
-
-    public void putParamsModel(DataModel model) {
-        params.putAll(model.toMap());
+    public void putModel(DataModel model) {
+        if (null != model) {
+            params.putAll(model.getMap());
+        }
     }
 
     public void setCallback(DPlatformApiCallback callback) {
         this.callback = callback;
-        if (null != getActivity()) {
-            System.out.println("==========DPlatformCustomApi onCreated==========");
-            parseIntent(getActivity().getIntent(), null);
-        }
+        System.out.println("==========DPlatformCustomApi onCreated==========");
+        parseIntent(getIntent(), null);
     }
 
     public void sendReq() {
@@ -88,6 +82,11 @@ public final class DPlatformApi {
 
     private Activity getActivity() {
         return reference.get();
+    }
+
+    private Intent getIntent() {
+        if (null != getActivity()) return getActivity().getIntent();
+        return null;
     }
 
     public void onNewIntent(Intent intent) {
@@ -125,7 +124,8 @@ public final class DPlatformApi {
     Uri buildPlatformUri() {
         return builder
                 .clearQuery()
-                .appendQueryParameter("data_callback_scheme", getCallbackScheme())
+                .appendQueryParameter("packageName", packageName)
+                .appendQueryParameter("callbackScheme", getCallbackScheme())
                 .appendQueryParameter("params", buildJsonStrParams())
                 .build();
     }
@@ -134,12 +134,12 @@ public final class DPlatformApi {
         return new JSONObject(checkRequiredParams(params)).toString();
     }
 
-    private Uri.Builder createUriBuilder() {
+    private Uri.Builder newUriBuilder() {
         return Uri.parse(getPlatformScheme()).buildUpon();
     }
 
     private Map<String, Object> checkRequiredParams(Map<String, Object> map) {
-        if (null != scheme) {
+        if (null == map.get("scheme") && null != scheme) {
             map.put("scheme", scheme);
         }
         NullCheck.nonNull(map.get("action"), "action is null!");
