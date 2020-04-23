@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.dplatform.sdk.Constant.CALLBACK_SCHEME;
+import static org.dplatform.sdk.Constant.DEFAULT_CALLBACK_SCHEME;
 import static org.dplatform.sdk.Constant.PLATFORM_APP_DOWNLOAD_URL_PRO;
 import static org.dplatform.sdk.Constant.PLATFORM_APP_DOWNLOAD_URL_RELEASE;
 import static org.dplatform.sdk.Constant.PLATFORM_APP_DOWNLOAD_URL_TEST;
@@ -25,13 +26,11 @@ public final class DPlatformApi {
     private String packageName;
     private Map<String, Object> params = new HashMap<>();
     private DPlatformApiCallback callback;
-    private String scheme;
     private DPlatformEvn evn;
 
-    DPlatformApi(WeakReference<Activity> reference, String site, String scheme, String packageName, DPlatformEvn evn) {
+    DPlatformApi(WeakReference<Activity> reference, String site, String packageName, DPlatformEvn evn) {
         this.reference = reference;
         this.site = site.toLowerCase();
-        this.scheme = scheme;
         this.evn = evn;
         this.packageName = packageName;
         this.builder = newUriBuilder();
@@ -81,6 +80,10 @@ public final class DPlatformApi {
 
     private String getCallbackScheme() {
         return String.format(CALLBACK_SCHEME, packageName);
+    }
+
+    private String getDefaultCallbackScheme() {
+        return String.format(DEFAULT_CALLBACK_SCHEME, site);
     }
 
     private Activity getActivity() {
@@ -142,8 +145,8 @@ public final class DPlatformApi {
     }
 
     private Map<String, Object> checkRequiredParams(Map<String, Object> map) {
-        if (null == map.get("scheme") && null != scheme) {
-            map.put("scheme", scheme);
+        if (null == map.get("scheme")) {
+            map.put("scheme", getDefaultCallbackScheme());
         }
         NullCheck.nonNull(map.get("action"), "action is null!");
         return map;

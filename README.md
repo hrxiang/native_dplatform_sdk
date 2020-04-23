@@ -1,3 +1,16 @@
+
+
+
+[![](https://jitpack.io/v/hrxiang/native_dplatform_sdk.svg)](https://jitpack.io/#hrxiang/native_dplatform_sdk)
+
+##
+
+
+          引入sdk： implementation 'com.github.hrxiang:native_dplatform_sdk:Tag'
+
+          游戏的scheme格式：org.dplatform.game.你的站点
+
+
 ## step 1
 
            <activity
@@ -9,7 +22,7 @@
                    <category android:name="android.intent.category.LAUNCHER" />
                </intent-filter>
                <intent-filter>
-                   <data android:scheme="你的scheme" />
+                   <data android:scheme="org.dplatform.game.你的站点" />
 
                    <action android:name="android.intent.action.VIEW" />
 
@@ -20,12 +33,11 @@
 ## step 2
 
            //创建api，并设置站点
-           api = DPlatformApiFactory.createApi(this, "ls", null, null);
+           api = DPlatformApiFactory.createApi(this, "你的站点", null);
 
            第1个参数：上下文（必传）
            第2个参数：站点（必传）
-           第3个参数：你的scheme
-           第4个参数：平台环境（DPlatformEvn.class）
+           第4个参数：平台环境（DPlatformEvn.class），默认为生产环境
 
 
 ## step 3

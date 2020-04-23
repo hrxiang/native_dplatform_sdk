@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView text = findViewById(R.id.text);
 
         //创建api，并设置站点 org.dplatform.game.cs
-        api = DPlatformApiFactory.createApi(this, "cs", null, null);
+        api = DPlatformApiFactory.createApi(this, "cs", null);
 
 
         //传递参数
