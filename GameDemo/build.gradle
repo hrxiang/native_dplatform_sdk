@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 }
 
 dependencies {
@@ -26,5 +31,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    compile project(path: ':dflatform_sdk')
+//    compile project(path: ':dflatform_sdk')
+
+//    implementation 'com.github.hrxiang:native_dplatform_sdk:v1.0'
+
+    implementation(name: 'dplatform_sdk-v1.0', ext: 'aar')
 }

@@ -1,2 +1,2 @@
-include ':GameDemo', ':dflatform_sdk', ':LiteDemo'
+include ':GameDemo', ':dplatform_sdk', ':LiteDemo'
 rootProject.name = 'native_dflatform_sdk'

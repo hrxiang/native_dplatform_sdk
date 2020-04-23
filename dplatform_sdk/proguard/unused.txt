@@ -1,0 +1,3 @@
+org.dplatform.sdk.BuildConfig
+org.dplatform.sdk.DPlatformApiCallbackActivity$1$1
+    public final synthetic org.dplatform.sdk.DPlatformApiCallbackActivity$1 this$1

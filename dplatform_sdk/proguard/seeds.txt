@@ -1,0 +1,56 @@
+org.dplatform.sdk.DPlatformApi: void onNewIntent(android.content.Intent)
+org.dplatform.sdk.DataModel: DataModel(java.lang.String)
+org.dplatform.sdk.Utils: void call(android.app.Activity,android.net.Uri,org.dplatform.sdk.WithParameter)
+org.dplatform.sdk.DPlatformApi: void putParameter(java.lang.String,java.lang.Object)
+org.dplatform.sdk.DPlatformEvn
+org.dplatform.sdk.DPlatformApiCallbackActivity: DPlatformApiCallbackActivity()
+org.dplatform.sdk.Utils: boolean isRunningForeground(android.content.Context)
+org.dplatform.sdk.Constant: java.lang.String PLATFORM_APP_DOWNLOAD_URL_PRO
+org.dplatform.sdk.DPlatformApi: void sendReq()
+org.dplatform.sdk.NullCheck: NullCheck()
+org.dplatform.sdk.PayModel: void setOrderSn(java.lang.String)
+org.dplatform.sdk.Utils: android.net.Uri getUri(android.app.Activity)
+org.dplatform.sdk.Utils: void moveTaskToFront(android.content.Context,java.lang.String)
+org.dplatform.sdk.DataModel
+org.dplatform.sdk.R
+org.dplatform.sdk.DataModel: java.util.Map getMap()
+org.dplatform.sdk.DPlatformEvn: java.lang.String description
+org.dplatform.sdk.NullCheck
+org.dplatform.sdk.Utils
+org.dplatform.sdk.OnUriIsNullListener
+org.dplatform.sdk.WithParameter: void with(android.content.Intent)
+org.dplatform.sdk.DPlatformEvn: org.dplatform.sdk.DPlatformEvn TEST
+org.dplatform.sdk.DPlatformEvn: org.dplatform.sdk.DPlatformEvn PRO
+org.dplatform.sdk.DataModel: void put(java.lang.String,java.lang.Object)
+org.dplatform.sdk.Constant: java.lang.String PLATFORM_PACKAGE_NAME
+org.dplatform.sdk.PayModel: void setToken(java.lang.String)
+org.dplatform.sdk.R: R()
+org.dplatform.sdk.DPlatformApiCallback: void onResult(org.json.JSONObject)
+org.dplatform.sdk.Constant: java.lang.String PLATFORM_APP_DOWNLOAD_URL_RELEASE
+org.dplatform.sdk.DPlatformApiFactory: DPlatformApiFactory()
+org.dplatform.sdk.DPlatformApi: void setCallback(org.dplatform.sdk.DPlatformApiCallback)
+org.dplatform.sdk.DPlatformApiCallbackActivity
+org.dplatform.sdk.DPlatformEvn: org.dplatform.sdk.DPlatformEvn[] values()
+org.dplatform.sdk.DPlatformEvn: org.dplatform.sdk.DPlatformEvn RELEASE
+org.dplatform.sdk.Utils: boolean isInstalled(android.content.Context,java.lang.String)
+org.dplatform.sdk.Utils: Utils()
+org.dplatform.sdk.DPlatformEvn: int index
+org.dplatform.sdk.DataModel: java.util.Map map
+org.dplatform.sdk.PayModel
+org.dplatform.sdk.Constant
+org.dplatform.sdk.Constant: java.lang.String PLATFORM_SCHEME
+org.dplatform.sdk.DPlatformApiCallback
+org.dplatform.sdk.DPlatformApiFactory
+org.dplatform.sdk.DPlatformApiFactory: org.dplatform.sdk.DPlatformApi createApi(android.app.Activity,java.lang.String,java.lang.String,org.dplatform.sdk.DPlatformEvn)
+org.dplatform.sdk.DPlatformApiFactory: org.dplatform.sdk.DPlatformApi api
+org.dplatform.sdk.WithParameter
+org.dplatform.sdk.DPlatformApi
+org.dplatform.sdk.Constant: java.lang.String PLATFORM_APP_DOWNLOAD_URL_TEST
+org.dplatform.sdk.PayModel: PayModel()
+org.dplatform.sdk.Utils: void openUri(android.content.Context,java.lang.String)
+org.dplatform.sdk.DPlatformEvn: org.dplatform.sdk.DPlatformEvn valueOf(java.lang.String)
+org.dplatform.sdk.DPlatformApi: void putModel(org.dplatform.sdk.DataModel)
+org.dplatform.sdk.NullCheck: java.lang.Object nonNull(java.lang.Object,java.lang.String)
+org.dplatform.sdk.Utils: java.lang.String getUriParameterValue(android.app.Activity,java.lang.String)
+org.dplatform.sdk.OnUriIsNullListener: void onUriIsNull()
+org.dplatform.sdk.Constant: java.lang.String CALLBACK_SCHEME
