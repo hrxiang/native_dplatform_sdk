@@ -38,21 +38,23 @@
               }
            });
 
-
 ## step 4
-
-          //传递参数
-          api.putParameter("action", "auth");
-          api.putParameter("token", "9527");
-          api.putParameter("isMock", 1);
-
-## step 5
 
           @Override
           protected void onNewIntent(Intent intent) {
               super.onNewIntent(intent);
               api.onNewIntent(intent);
           }
+
+
+## step 5
+
+          //传递参数
+          api.putParameter("action", "auth");
+          api.putParameter("token", "9527");
+          api.putParameter("isMock", 1);
+
+
 
 ## step 6
 
