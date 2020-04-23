@@ -1,0 +1,2 @@
+include ':app', ':dflatform_sdk'
+rootProject.name='native_dflatform_sdk'
