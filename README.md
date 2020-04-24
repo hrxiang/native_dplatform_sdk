@@ -41,7 +41,7 @@
                </intent-filter>
            </activity>
 
-## step 2：创建api，默认环境为生产环境
+## step 2：创建api
 
            //创建api，并设置站点
            api = DPlatformApiFactory.createApi(this, "你的站点", null);
@@ -73,14 +73,14 @@
 
 ## step 5：添加数据，以下两种方式等价
 
-          //通用方式传递数据，action值必须传递，如支付pay，登录：auth
+          //充值（通用方式传递数据）：，action值必须传递
           api.putParameter("action", "pay");
           api.putParameter("orderSn", "no1110");
           api.putParameter("token", "9527");
 
           或 SDK已定义好的数据格式
 
-          //如：充值
+          //充值
           PayModel model = new PayModel();
           model.setOrderSn("no1110");//订单号
           model.setToken("9527");//登录token
