@@ -34,7 +34,7 @@ public class DPlatformApiCallbackActivity extends Activity {
                             Utils.openUri(DPlatformApiCallbackActivity.this, getPlatformDownloadUrl());
                         } else {
                             Uri uri = getPlatformUri();
-                            if (null != uri) {
+                            if (null != uri && isValidReqUri(uri)) {
                                 Utils.call(DPlatformApiCallbackActivity.this, uri, new WithParameter() {
                                     @Override
                                     public void with(Intent intent) {
@@ -74,5 +74,12 @@ public class DPlatformApiCallbackActivity extends Activity {
 
     private static Uri getPlatformUri() {
         return DPlatformApiFactory.api.buildPlatformUri();
+    }
+
+    private static boolean isValidReqUri(Uri uri) {
+        OnCheckReqUriListener listener = DPlatformApiFactory.api.getCheckReqUriListener();
+        if (null != listener) return listener.isValidReqUri(uri);
+        System.out.println("==============call uri :" + Uri.decode(uri.toString()));
+        return true;
     }
 }

@@ -26,6 +26,7 @@ public final class DPlatformApi {
     private String packageName;
     private Map<String, Object> params = new HashMap<>();
     private DPlatformApiCallback callback;
+    private OnCheckReqUriListener onCheckReqUriListener;
     private DPlatformEvn evn;
 
     DPlatformApi(WeakReference<Activity> reference, String site, String packageName, DPlatformEvn evn) {
@@ -58,6 +59,10 @@ public final class DPlatformApi {
             Intent i = new Intent(ac, DPlatformApiCallbackActivity.class);
             ac.startActivity(i);
         }
+    }
+
+    public void site(String site) {
+        this.site = NullCheck.nonNull(site, "site is null").toLowerCase();
     }
 
     String getPlatformPackageName() {
@@ -102,6 +107,14 @@ public final class DPlatformApi {
 
     DPlatformApiCallback getCallback() {
         return callback;
+    }
+
+    OnCheckReqUriListener getCheckReqUriListener() {
+        return onCheckReqUriListener;
+    }
+
+    public void setCheckReqUriListener(OnCheckReqUriListener onCheckReqUriListener) {
+        this.onCheckReqUriListener = onCheckReqUriListener;
     }
 
     void parseIntent(Intent intent, OnUriIsNullListener listener) {
