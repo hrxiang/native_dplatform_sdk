@@ -26,6 +26,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity implements DPlatformApiCallback, RadioGroup.OnCheckedChangeListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener, InputFilter {
     DPlatformApi api;
     EditText token;
+    EditText channelNo;
     EditText orderSn;
     EditText site;
     TextView result;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         setContentView(R.layout.activity_main);
         result = findViewById(R.id.result);
         token = findViewById(R.id.token);
+        channelNo = findViewById(R.id.channelNo);
         site = findViewById(R.id.site);
         orderSn = findViewById(R.id.orderSn);
         ((RadioGroup) findViewById(R.id.selectAction)).setOnCheckedChangeListener(this);

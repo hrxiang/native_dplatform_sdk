@@ -84,7 +84,13 @@
                     android:id="@+id/token"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="请输入token" />
+                    android:hint="请输入Token" />
+
+                <EditText
+                    android:id="@+id/channelNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入ChannelNO" />
 
                 <EditText
                     android:id="@+id/orderSn"
