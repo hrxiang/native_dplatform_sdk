@@ -21,7 +21,6 @@ import static org.dplatform.sdk.Constant.PLATFORM_SCHEME;
 
 public final class DPlatformApi {
     private WeakReference<Activity> reference;
-    private Uri.Builder builder;
     private String site;
     private String packageName;
     private Map<String, Object> params = new HashMap<>();
@@ -34,7 +33,6 @@ public final class DPlatformApi {
         this.site = site.toLowerCase();
         this.evn = evn;
         this.packageName = packageName;
-        this.builder = newUriBuilder();
     }
 
     public void putParameter(String key, Object value) {
@@ -141,8 +139,8 @@ public final class DPlatformApi {
     }
 
     Uri buildPlatformUri() {
-        return builder
-                .clearQuery()
+        return newUriBuilder()
+//                .clearQuery()
                 .appendQueryParameter("packageName", packageName)
                 .appendQueryParameter("callbackScheme", getCallbackScheme())
                 .appendQueryParameter("params", buildJsonStrParams())
