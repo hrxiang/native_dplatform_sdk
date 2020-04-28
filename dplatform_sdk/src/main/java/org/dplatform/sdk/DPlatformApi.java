@@ -23,7 +23,7 @@ public final class DPlatformApi {
     private WeakReference<Activity> reference;
     private String site;
     private String packageName;
-    private Map<String, Object> params = new HashMap<>();
+    private final Map<String, Object> params = new HashMap<>();
     private DPlatformApiCallback callback;
     private OnCheckReqUriListener onCheckReqUriListener;
     private DPlatformEvn evn;
@@ -45,8 +45,8 @@ public final class DPlatformApi {
         }
     }
 
-    public void clearAllParameter() {
-        params.clear();
+    public Map<String, Object> getParameters() {
+        return params;
     }
 
     public void setCallback(DPlatformApiCallback callback) {

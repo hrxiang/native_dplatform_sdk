@@ -14,7 +14,7 @@ public abstract class DataModel {
         map.put(key, value);
     }
 
-    public Map<String, Object> getMap() {
+    Map<String, Object> getMap() {
         return map;
     }
 }

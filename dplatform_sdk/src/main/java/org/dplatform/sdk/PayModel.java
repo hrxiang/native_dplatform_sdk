@@ -7,15 +7,14 @@ public class PayModel extends DataModel {
     }
 
     public void setToken(String token) {
-        put("token", NullCheck.nonNull(token, "token is null!"));
+        setAttrValue("token", NullCheck.nonNull(token, "token is null!"));
     }
 
     public void setOrderSn(String orderSn) {
-        put("orderSn", NullCheck.nonNull(orderSn, "orderSn is null!"));
+        setAttrValue("orderSn", NullCheck.nonNull(orderSn, "orderSn is null!"));
     }
 
-    public void setScheme(String scheme) {
-        put("scheme", scheme);
+    public void setAttrValue(String attrKey, Object attrValue) {
+        put(attrKey, attrValue);
     }
-
 }

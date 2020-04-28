@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         }
 
         api.site(site.getText().toString());
-        api.clearAllParameter();
+        api.getParameters().clear();
         api.putParameter("isMock", isMock ? "1" : "0");
         api.putParameter("action", isLogin ? "auth" : "pay");
         api.putParameter("token", token.getText().toString());
