@@ -5,10 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,10 +30,10 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity implements DPlatformApiCallback, RadioGroup.OnCheckedChangeListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener, InputFilter {
     DPlatformApi api;
     EditText token;
-    EditText channelNo;
     EditText orderSn;
     EditText site;
     TextView result;
+    LinearLayout otherParams;
 
     boolean isLogin = true;
     boolean isMock = true;
@@ -39,19 +43,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        result = findViewById(R.id.result);
-        token = findViewById(R.id.token);
-        channelNo = findViewById(R.id.channelNo);
-        site = findViewById(R.id.site);
-        orderSn = findViewById(R.id.orderSn);
-        ((RadioGroup) findViewById(R.id.selectAction)).setOnCheckedChangeListener(this);
-        ((CheckBox) findViewById(R.id.icMock)).setOnCheckedChangeListener(this);
-        findViewById(R.id.submit).setOnClickListener(this);
-        token.setFilters(new InputFilter[]{this});
-        orderSn.setFilters(new InputFilter[]{this});
-        site.setFilters(new InputFilter[]{this});
-
-
+        initView();
         //创建api，并设置站点 org.dplatform.game.cs
         api = DPlatformApiFactory.createApi(this, siteStr, DPlatformEvn.TEST);
 
@@ -100,15 +92,6 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         api.onNewIntent(intent);
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        isLogin = isLogin(i);
-        orderSn.setVisibility(isLogin ? View.GONE : View.VISIBLE);
-    }
-
-    static boolean isLogin(int id) {
-        return R.id.radio_login == id;
-    }
 
     @Override
     public void onClick(View view) {
@@ -126,12 +109,25 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         }
 
         api.site(site.getText().toString());
+        api.clearAllParameter();
         api.putParameter("isMock", isMock ? "1" : "0");
         api.putParameter("action", isLogin ? "auth" : "pay");
         api.putParameter("token", token.getText().toString());
-        api.putParameter("orderSn", orderSn.getText().toString());
-
+        if (!TextUtils.isEmpty(orderSn.getText().toString())) {
+            api.putParameter("orderSn", orderSn.getText().toString());
+        }
+        putOtherParams();
         api.sendReq();
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+        isLogin = isLogin(i);
+        orderSn.setVisibility(isLogin ? View.GONE : View.VISIBLE);
+    }
+
+    static boolean isLogin(int id) {
+        return R.id.radio_login == id;
     }
 
     @Override
@@ -148,5 +144,62 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
     public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
         if (charSequence.equals(" ")) return "";
         else return null;
+    }
+
+    ViewGroup addParamView() {
+        final ViewGroup viewGroup = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.item_params, null);
+        otherParams.addView(viewGroup);
+        viewGroup.getChildAt(3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                otherParams.removeView(viewGroup);
+            }
+        });
+        return viewGroup;
+    }
+
+    void putOtherParams() {
+        int count = otherParams.getChildCount();
+        String key, value;
+        ViewGroup vg;
+        View inputKey;
+        View inputValue;
+        for (int i = 0; i < count; i++) {
+            if (otherParams.getChildAt(i) instanceof ViewGroup) {
+                vg = (ViewGroup) otherParams.getChildAt(i);
+                if (vg.getChildCount() == 4) {
+                    inputKey = vg.getChildAt(0);
+                    inputValue = vg.getChildAt(2);
+                    if (inputKey instanceof EditText && inputValue instanceof EditText) {
+                        key = ((EditText) inputKey).getText().toString().trim();
+                        value = ((EditText) inputValue).getText().toString().trim();
+                        if (!TextUtils.isEmpty(key) && !TextUtils.isEmpty(value)) {
+                            System.out.println("=====key:" + key + "=======value:" + value);
+                            api.putParameter(key, value);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    void initView() {
+        result = findViewById(R.id.result);
+        token = findViewById(R.id.token);
+        site = findViewById(R.id.site);
+        orderSn = findViewById(R.id.orderSn);
+        ((RadioGroup) findViewById(R.id.selectAction)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.icMock)).setOnCheckedChangeListener(this);
+        findViewById(R.id.submit).setOnClickListener(this);
+        token.setFilters(new InputFilter[]{this});
+        orderSn.setFilters(new InputFilter[]{this});
+        site.setFilters(new InputFilter[]{this});
+        otherParams = findViewById(R.id.otherParams);
+        findViewById(R.id.addParams).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addParamView();
+            }
+        });
     }
 }

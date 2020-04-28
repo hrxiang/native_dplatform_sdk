@@ -45,6 +45,10 @@ public final class DPlatformApi {
         }
     }
 
+    public void clearAllParameter() {
+        params.clear();
+    }
+
     public void setCallback(DPlatformApiCallback callback) {
         this.callback = callback;
         System.out.println("==========DPlatformCustomApi onCreated==========");
