@@ -106,11 +106,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
 
-            <Button
-                android:id="@+id/submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="提交" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/submitApp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="调用APP" />
+
+                <Button
+                    android:id="@+id/submitH5"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="调用H5" />
+            </LinearLayout>
 
 
             <TextView

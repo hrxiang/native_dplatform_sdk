@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import static org.dplatform.sdk.Constant.CALLBACK_SCHEME;
 import static org.dplatform.sdk.Constant.DEFAULT_CALLBACK_SCHEME;
@@ -120,22 +119,29 @@ public final class DPlatformApi {
     }
 
     void parseIntent(Intent intent, OnUriIsNullListener listener) {
-        Map<String, String> arguments = new HashMap<>();
+//        Map<String, String> arguments = new HashMap<>();
         if (null != intent) {
             Uri uri = intent.getData();
-            System.out.println("============DPlatformCustomApi parse uri==============" + uri);
             if (null != uri) {
-                Set<String> keys = uri.getQueryParameterNames();
-                if (null != keys) {
-                    String value;
-                    for (String key : keys) {
-                        value = uri.getQueryParameter(key);
-                        if (null != value) {
-                            arguments.put(key, value);
-                        }
+                System.out.println("============DPlatformCustomApi parse uri==============" + Uri.decode(uri.toString()));
+//                Set<String> keys = uri.getQueryParameterNames();
+//                if (null != keys) {
+//                    String value;
+//                    for (String key : keys) {
+//                        value = uri.getQueryParameter(key);
+//                        if (null != value) {
+//                            arguments.put(key, value);
+//                        }
+//                    }
+//                }
+                String params = uri.getQueryParameter("params");
+                if (null != callback && null != params) {
+                    try {
+                        callback.onResult(new JSONObject(params));
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
-                if (null != callback) callback.onResult(new JSONObject(arguments));
             } else {
                 if (null != listener) listener.onUriIsNull();
             }

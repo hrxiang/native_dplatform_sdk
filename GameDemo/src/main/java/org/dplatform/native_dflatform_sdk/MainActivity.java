@@ -95,29 +95,42 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 
     @Override
     public void onClick(View view) {
-        if (site.getText().toString().isEmpty()) {
+
+        String site_ = site.getText().toString();
+        String isMock_ = isMock ? "1" : "0";
+        String action_ = isLogin ? "auth" : "pay";
+        String token_ = token.getText().toString();
+        String orderSn_ = orderSn.getText().toString();
+
+        if (site_.isEmpty()) {
             Toast.makeText(this, "请输入站点", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (token.getText().toString().isEmpty()) {
+        if (token_.isEmpty()) {
             Toast.makeText(this, "请输入token", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!isLogin && orderSn.getText().toString().isEmpty()) {
+        if (!isLogin && orderSn_.isEmpty()) {
             Toast.makeText(this, "请输入orderSn", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        api.site(site.getText().toString());
+        api.site(site_);
         api.getParameters().clear();
-        api.putParameter("isMock", isMock ? "1" : "0");
-        api.putParameter("action", isLogin ? "auth" : "pay");
-        api.putParameter("token", token.getText().toString());
-        if (!TextUtils.isEmpty(orderSn.getText().toString())) {
-            api.putParameter("orderSn", orderSn.getText().toString());
+        api.putParameter("isMock", isMock_);
+        api.putParameter("action", action_);
+        api.putParameter("token", token_);
+        if (!TextUtils.isEmpty(orderSn_)) {
+            api.putParameter("orderSn", orderSn_);
         }
         putOtherParams();
-        api.sendReq();
+
+        if (view.getId() == R.id.submitApp) {
+            api.sendReq();
+        } else if (view.getId() == R.id.submitH5) {
+
+        }
+
     }
 
     @Override
@@ -137,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 
     @Override
     public void onResult(JSONObject object) {
+        System.out.println("============object:"+ (object.opt("code") instanceof Integer));
         result.setText("返回结果：" + object.toString());
     }
 
@@ -190,7 +204,8 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         orderSn = findViewById(R.id.orderSn);
         ((RadioGroup) findViewById(R.id.selectAction)).setOnCheckedChangeListener(this);
         ((CheckBox) findViewById(R.id.icMock)).setOnCheckedChangeListener(this);
-        findViewById(R.id.submit).setOnClickListener(this);
+        findViewById(R.id.submitApp).setOnClickListener(this);
+        findViewById(R.id.submitH5).setOnClickListener(this);
         token.setFilters(new InputFilter[]{this});
         orderSn.setFilters(new InputFilter[]{this});
         site.setFilters(new InputFilter[]{this});
