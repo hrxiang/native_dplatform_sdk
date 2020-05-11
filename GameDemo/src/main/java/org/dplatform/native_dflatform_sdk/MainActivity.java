@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 
     boolean isLogin = true;
     boolean isMock = true;
-    String siteStr = "wb";
+    String siteStr = "cs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

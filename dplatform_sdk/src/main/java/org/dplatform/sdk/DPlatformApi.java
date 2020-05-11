@@ -22,6 +22,8 @@ import static org.dplatform.sdk.Constant.PLATFORM_SCHEME;
 public final class DPlatformApi {
     private WeakReference<Activity> reference;
     private String site;
+    private String customPlatformPackageName;
+    private String customPlatformScheme;
     private String packageName;
     private final Map<String, Object> params = new HashMap<>();
     private DPlatformApiCallback callback;
@@ -63,12 +65,22 @@ public final class DPlatformApi {
         }
     }
 
-    public void site(String site) {
-        this.site = NullCheck.nonNull(site, "site is null").toLowerCase();
+    public void customPlatformPackageName(String packageName) {
+        this.customPlatformPackageName = NullCheck.nonNull(packageName, "packageName is null");
+    }
+
+    public void customPlatformScheme(String scheme) {
+        this.customPlatformScheme = NullCheck.nonNull(scheme, "scheme is null");
     }
 
     String getPlatformPackageName() {
+        if (null != customPlatformPackageName) return customPlatformPackageName;
         return String.format(PLATFORM_PACKAGE_NAME, site);
+    }
+
+    private String getPlatformScheme() {
+        if (null != customPlatformScheme) return customPlatformScheme;
+        return String.format(PLATFORM_SCHEME, site);
     }
 
     String getPlatformDownloadUrl() {
@@ -79,10 +91,6 @@ public final class DPlatformApi {
         } else {
             return String.format(PLATFORM_APP_DOWNLOAD_URL_RELEASE, site);
         }
-    }
-
-    private String getPlatformScheme() {
-        return String.format(PLATFORM_SCHEME, site);
     }
 
     private String getCallbackScheme() {
