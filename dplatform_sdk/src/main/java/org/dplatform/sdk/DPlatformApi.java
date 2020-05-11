@@ -66,11 +66,11 @@ public final class DPlatformApi {
     }
 
     public void customPlatformPackageName(String packageName) {
-        this.customPlatformPackageName = NullCheck.nonNull(packageName, "packageName is null");
+        this.customPlatformPackageName = packageName;
     }
 
     public void customPlatformScheme(String scheme) {
-        this.customPlatformScheme = NullCheck.nonNull(scheme, "scheme is null");
+        this.customPlatformScheme = scheme;
     }
 
     String getPlatformPackageName() {
