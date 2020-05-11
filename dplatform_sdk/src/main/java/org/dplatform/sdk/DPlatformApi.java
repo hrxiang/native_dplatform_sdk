@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import static org.dplatform.sdk.Constant.CALLBACK_SCHEME;
 import static org.dplatform.sdk.Constant.DEFAULT_CALLBACK_SCHEME;
@@ -119,40 +120,60 @@ public final class DPlatformApi {
     }
 
     void parseIntent(Intent intent, OnUriIsNullListener listener) {
-//        Map<String, String> arguments = new HashMap<>();
-        if (null != intent) {
-            Uri uri = intent.getData();
-            if (null != uri) {
-                System.out.println("============DPlatformCustomApi parse uri==============" + Uri.decode(uri.toString()));
-//                Set<String> keys = uri.getQueryParameterNames();
-//                if (null != keys) {
-//                    String value;
-//                    for (String key : keys) {
-//                        value = uri.getQueryParameter(key);
-//                        if (null != value) {
-//                            arguments.put(key, value);
-//                        }
-//                    }
-//                }
-                String params = uri.getQueryParameter("params");
-                if (null != callback && null != params) {
-                    try {
-                        callback.onResult(new JSONObject(params));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        try {
+            Map<String, String> arguments = new HashMap<>();
+            if (null != intent) {
+                Uri uri = intent.getData();
+                if (null != uri) {
+                    System.out.println("============DPlatformCustomApi parse uri==============" + Uri.decode(uri.toString()));
+                    if (isValidScheme(uri)) {
+                        if (null != callback) {
+                            // 最新sdk获取数据的方式，最新sdk修复字段类型被修改的bug
+                            String params = uri.getQueryParameter("commonSdkParams");
+                            if (null != params) {
+                                callback.onResult(new JSONObject(params));
+                            } else {
+                                //老版本lite获取数据的方式，存在字段类型被修改为string类型的bug
+                                Set<String> keys = uri.getQueryParameterNames();
+                                if (null != keys) {
+                                    String value;
+                                    for (String key : keys) {
+                                        value = uri.getQueryParameter(key);
+                                        if (null != value) {
+                                            arguments.put(key, value);
+                                        }
+                                    }
+                                }
+                                callback.onResult(new JSONObject(arguments));
+                            }
+                        }
                     }
+                } else {
+                    if (null != listener) listener.onUriIsNull();
                 }
-            } else {
-                if (null != listener) listener.onUriIsNull();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    private boolean isValidScheme(Uri uri) {
+        String receiverScheme = uri.getScheme();
+        Object registerScheme = getRegisteredScheme();
+        System.out.println("============收到的scheme:=======" + receiverScheme);
+        System.out.println("============注册的scheme:=======" + registerScheme);
+        return registerScheme.equals(receiverScheme);
+    }
+
+    private Object getRegisteredScheme() {
+        return null == params.get("scheme") ? getDefaultCallbackScheme() : params.get("scheme");
     }
 
     Uri buildPlatformUri() {
         return newUriBuilder()
-//                .clearQuery()
-                .appendQueryParameter("packageName", packageName)
-                .appendQueryParameter("callbackScheme", getCallbackScheme())
+                .clearQuery()
+//                .appendQueryParameter("packageName", packageName)
+//                .appendQueryParameter("callbackScheme", getCallbackScheme())
                 .appendQueryParameter("params", buildJsonStrParams())
                 .build();
     }
@@ -166,10 +187,10 @@ public final class DPlatformApi {
     }
 
     private Map<String, Object> checkRequiredParams(Map<String, Object> map) {
-        if (null == map.get("scheme")) {
-            map.put("scheme", getDefaultCallbackScheme());
-        }
         NullCheck.nonNull(map.get("action"), "action is null!");
+        map.put("scheme", getRegisteredScheme());
+        map.put("callbackScheme", getCallbackScheme());
+        map.put("packageName", packageName);
         return map;
     }
 }
