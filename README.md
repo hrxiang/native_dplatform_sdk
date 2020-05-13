@@ -96,7 +96,5 @@
 
 ## 扩展：
 
-        如果你想使用其他scheme：
-        第一步： 替换manifest里的scheme
-        第二步： api.putParameter("scheme", "xxxxxxx");//传递你的scheme
+       其他
 
