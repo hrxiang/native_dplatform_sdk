@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         api.setCheckReqUriListener(new OnCheckReqUriListener() {
             @Override
             public boolean isValidReqUri(Uri uri) {
+                System.out.println("===============uri"+uri.toString());
                 return true;
             }
         });
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 
         String site_ = site.getText().toString();
         String isMock_ = isMock ? "1" : "0";
-        String action_ = isLogin ? "auth" : "pay";
+        String action_ = isLogin ? "login" : "pay";
         String token_ = token.getText().toString();
         String orderSn_ = orderSn.getText().toString();
 
@@ -115,20 +116,30 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
             return;
         }
 
+
         api.getParameters().clear();
-        api.putParameter("isMock", isMock_);
+        api.customPlatformPackageName("org.dplatfrom.pro.gc");
+        api.customPlatformScheme("org.dplatfrom.pro.gc");
+        api.customCurrentScheme("xyttylusdt");//10000144
+//        api.putParameter("isMock", isMock_);
         api.putParameter("action", action_);
-        api.putParameter("token", token_);
-        if (!TextUtils.isEmpty(orderSn_)) {
-            api.putParameter("orderSn", orderSn_);
-        }
+//        api.putParameter("token", token_);
         putOtherParams();
-
-        if (view.getId() == R.id.submitApp) {
-            api.sendReq();
-        } else if (view.getId() == R.id.submitH5) {
-
-        }
+        api.sendReq();
+//        api.getParameters().clear();
+//        api.putParameter("isMock", isMock_);
+//        api.putParameter("action", action_);
+//        api.putParameter("token", token_);
+//        if (!TextUtils.isEmpty(orderSn_)) {
+//            api.putParameter("orderSn", orderSn_);
+//        }
+//        putOtherParams();
+//
+//        if (view.getId() == R.id.submitApp) {
+//            api.sendReq();
+//        } else if (view.getId() == R.id.submitH5) {
+//
+//        }
 
     }
 

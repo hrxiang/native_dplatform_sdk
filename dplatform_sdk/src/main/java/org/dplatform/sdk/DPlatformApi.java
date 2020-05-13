@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import static org.dplatform.sdk.Constant.CALLBACK_SCHEME;
 import static org.dplatform.sdk.Constant.DEFAULT_CALLBACK_SCHEME;
+import static org.dplatform.sdk.Constant.OTHER_CALLBACK_SCHEME;
 import static org.dplatform.sdk.Constant.PLATFORM_APP_DOWNLOAD_URL_PRO;
 import static org.dplatform.sdk.Constant.PLATFORM_APP_DOWNLOAD_URL_RELEASE;
 import static org.dplatform.sdk.Constant.PLATFORM_APP_DOWNLOAD_URL_TEST;
@@ -24,6 +24,8 @@ public final class DPlatformApi {
     private String site;
     private String customPlatformPackageName;
     private String customPlatformScheme;
+    private String customPlatformDownloadUrl;
+    private String customCurrentScheme;
     private String packageName;
     private final Map<String, Object> params = new HashMap<>();
     private DPlatformApiCallback callback;
@@ -73,6 +75,14 @@ public final class DPlatformApi {
         this.customPlatformScheme = scheme;
     }
 
+    public void customPlatformDownloadUrl(String downloadUrl) {
+        this.customPlatformDownloadUrl = downloadUrl;
+    }
+
+    public void customCurrentScheme(String scheme) {
+        this.customCurrentScheme = scheme;
+    }
+
     String getPlatformPackageName() {
         if (null != customPlatformPackageName) return customPlatformPackageName;
         return String.format(PLATFORM_PACKAGE_NAME, site);
@@ -84,6 +94,7 @@ public final class DPlatformApi {
     }
 
     String getPlatformDownloadUrl() {
+        if (null != customPlatformDownloadUrl) return customPlatformDownloadUrl;
         if (DPlatformEvn.TEST.equals(evn)) {
             return String.format(PLATFORM_APP_DOWNLOAD_URL_TEST, site);
         } else if (DPlatformEvn.PRO.equals(evn)) {
@@ -93,8 +104,8 @@ public final class DPlatformApi {
         }
     }
 
-    private String getCallbackScheme() {
-        return String.format(CALLBACK_SCHEME, packageName);
+    private String getOtherCallbackScheme() {
+        return String.format(OTHER_CALLBACK_SCHEME, packageName);
     }
 
     private String getDefaultCallbackScheme() {
@@ -167,21 +178,21 @@ public final class DPlatformApi {
 
     private boolean isValidScheme(Uri uri) {
         String receiverScheme = uri.getScheme();
-        Object registerScheme = getRegisteredScheme();
+        Object registerScheme = getCurrentRegisteredScheme();
         System.out.println("============收到的scheme:=======" + receiverScheme);
         System.out.println("============注册的scheme:=======" + registerScheme);
         return registerScheme.equals(receiverScheme);
     }
 
-    private Object getRegisteredScheme() {
-        return null == params.get("scheme") ? getDefaultCallbackScheme() : params.get("scheme");
+    private Object getCurrentRegisteredScheme() {
+        return null == customCurrentScheme ? getDefaultCallbackScheme() : customCurrentScheme;
     }
 
     Uri buildPlatformUri() {
         return newUriBuilder()
                 .clearQuery()
 //                .appendQueryParameter("packageName", packageName)
-//                .appendQueryParameter("callbackScheme", getCallbackScheme())
+//                .appendQueryParameter("otherScheme", getOtherCallbackScheme())
                 .appendQueryParameter("params", buildJsonStrParams())
                 .build();
     }
@@ -191,13 +202,16 @@ public final class DPlatformApi {
     }
 
     private Uri.Builder newUriBuilder() {
-        return Uri.parse(getPlatformScheme()).buildUpon();
+        String uri = getPlatformScheme();
+        if (null != uri && !uri.contains("://")) {
+            uri += "://do";
+        }
+        return Uri.parse(uri).buildUpon();
     }
 
     private Map<String, Object> checkRequiredParams(Map<String, Object> map) {
-        NullCheck.nonNull(map.get("action"), "action is null!");
-        map.put("scheme", getRegisteredScheme());
-        map.put("callbackScheme", getCallbackScheme());
+        map.put("scheme", getCurrentRegisteredScheme());
+        map.put("otherScheme", getOtherCallbackScheme());
         map.put("packageName", packageName);
         return map;
     }
