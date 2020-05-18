@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 
     boolean isLogin = true;
     boolean isMock = true;
-    String siteStr = "cs";
+    String siteStr = "HT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         setContentView(R.layout.activity_main);
         initView();
         //创建api，并设置站点 org.dplatform.game.cs
-        api = DPlatformApiFactory.createApi(this, siteStr, DPlatformEvn.TEST);
+        api = DPlatformApiFactory.createApi(this, siteStr, DPlatformEvn.DEBUG);
 
         site.setText(siteStr);
 
@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         PayModel model = new PayModel();
         model.setToken("9527");
         model.setOrderSn("no10086");
+        model.setAttrValue("channeNo","10001");
         api.putModel(model);
         //发送请求
         api.sendReq();
@@ -118,12 +119,13 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 
 
         api.getParameters().clear();
-        api.customPlatformPackageName("org.dplatfrom.pro.gc");
-        api.customPlatformScheme("org.dplatfrom.pro.gc");
-        api.customCurrentScheme("xyttylusdt");//10000144
-//        api.putParameter("isMock", isMock_);
+//        api.customPlatformPackageName("org.dplatfrom.pro.gc");
+//        api.customPlatformScheme("org.dplatfrom.pro.gc");
+//        api.customCurrentScheme("xyttylusdt");//10000144
+        api.putParameter("isMock", isMock_);
         api.putParameter("action", action_);
-//        api.putParameter("token", token_);
+        api.putParameter("token", token_);
+//        api.putParameter("channelNo", token_);
         putOtherParams();
         api.sendReq();
 //        api.getParameters().clear();

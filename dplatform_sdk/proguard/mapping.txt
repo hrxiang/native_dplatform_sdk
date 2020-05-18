@@ -1,6 +1,6 @@
 # compiler: R8
 # compiler_version: 1.5.68
-# pg_map_id: ee87025
+# pg_map_id: a891905
 org.dplatform.sdk.DPlatformApi -> org.dplatform.sdk.DPlatformApi:
     java.lang.String packageName -> g
     java.lang.String customCurrentScheme -> f
@@ -13,35 +13,35 @@ org.dplatform.sdk.DPlatformApi -> org.dplatform.sdk.DPlatformApi:
     java.lang.String customPlatformDownloadUrl -> e
     java.lang.String customPlatformScheme -> d
     java.util.Map params -> h
-    1:1:void <init>(java.lang.ref.WeakReference,java.lang.String,java.lang.String,org.dplatform.sdk.DPlatformEvn):35:35 -> <init>
-    2:11:void <init>(java.lang.ref.WeakReference,java.lang.String,java.lang.String,org.dplatform.sdk.DPlatformEvn):30:39 -> <init>
-    1:33:void parseIntent(android.content.Intent,org.dplatform.sdk.OnUriIsNullListener):143:175 -> a
-    34:38:boolean isValidScheme(android.net.Uri):180:184 -> a
-    39:39:java.lang.String buildJsonStrParams():201:201 -> a
-    40:42:java.util.Map checkRequiredParams(java.util.Map):213:215 -> a
-    1:6:android.net.Uri buildPlatformUri():192:197 -> b
-    1:1:android.app.Activity getActivity():116:116 -> c
-    1:1:void customCurrentScheme(java.lang.String):83:83 -> customCurrentScheme
-    1:1:void customPlatformDownloadUrl(java.lang.String):79:79 -> customPlatformDownloadUrl
-    1:1:void customPlatformPackageName(java.lang.String):71:71 -> customPlatformPackageName
-    1:1:void customPlatformScheme(java.lang.String):75:75 -> customPlatformScheme
-    1:1:org.dplatform.sdk.DPlatformApiCallback getCallback():130:130 -> d
-    1:1:org.dplatform.sdk.OnCheckReqUriListener getCheckReqUriListener():134:134 -> e
-    1:1:java.lang.Object getCurrentRegisteredScheme():188:188 -> f
-    1:1:java.lang.String getDefaultCallbackScheme():112:112 -> g
-    1:1:java.util.Map getParameters():53:53 -> getParameters
-    1:1:android.content.Intent getIntent():120:120 -> h
-    1:1:java.lang.String getOtherCallbackScheme():108:108 -> i
-    1:7:java.lang.String getPlatformDownloadUrl():97:103 -> j
-    1:2:java.lang.String getPlatformPackageName():87:88 -> k
-    1:2:java.lang.String getPlatformScheme():92:93 -> l
-    1:5:android.net.Uri$Builder newUriBuilder():205:209 -> m
-    1:2:void onNewIntent(android.content.Intent):125:126 -> onNewIntent
-    1:1:void putModel(org.dplatform.sdk.DataModel):48:48 -> putModel
-    1:1:void putParameter(java.lang.String,java.lang.Object):43:43 -> putParameter
-    1:4:void sendReq():63:66 -> sendReq
-    1:3:void setCallback(org.dplatform.sdk.DPlatformApiCallback):57:59 -> setCallback
-    1:1:void setCheckReqUriListener(org.dplatform.sdk.OnCheckReqUriListener):138:138 -> setCheckReqUriListener
+    1:1:void <init>(java.lang.ref.WeakReference,java.lang.String,java.lang.String,org.dplatform.sdk.DPlatformEvn):36:36 -> <init>
+    2:11:void <init>(java.lang.ref.WeakReference,java.lang.String,java.lang.String,org.dplatform.sdk.DPlatformEvn):31:40 -> <init>
+    1:33:void parseIntent(android.content.Intent,org.dplatform.sdk.OnUriIsNullListener):146:178 -> a
+    34:38:boolean isValidScheme(android.net.Uri):183:187 -> a
+    39:39:java.lang.String buildJsonStrParams():204:204 -> a
+    40:42:java.util.Map checkRequiredParams(java.util.Map):216:218 -> a
+    1:6:android.net.Uri buildPlatformUri():195:200 -> b
+    1:1:android.app.Activity getActivity():119:119 -> c
+    1:1:void customCurrentScheme(java.lang.String):84:84 -> customCurrentScheme
+    1:1:void customPlatformDownloadUrl(java.lang.String):80:80 -> customPlatformDownloadUrl
+    1:1:void customPlatformPackageName(java.lang.String):72:72 -> customPlatformPackageName
+    1:1:void customPlatformScheme(java.lang.String):76:76 -> customPlatformScheme
+    1:1:org.dplatform.sdk.DPlatformApiCallback getCallback():133:133 -> d
+    1:1:org.dplatform.sdk.OnCheckReqUriListener getCheckReqUriListener():137:137 -> e
+    1:1:java.lang.Object getCurrentRegisteredScheme():191:191 -> f
+    1:1:java.lang.String getDefaultCallbackScheme():115:115 -> g
+    1:1:java.util.Map getParameters():54:54 -> getParameters
+    1:1:android.content.Intent getIntent():123:123 -> h
+    1:1:java.lang.String getOtherCallbackScheme():111:111 -> i
+    1:9:java.lang.String getPlatformDownloadUrl():98:106 -> j
+    1:2:java.lang.String getPlatformPackageName():88:89 -> k
+    1:2:java.lang.String getPlatformScheme():93:94 -> l
+    1:5:android.net.Uri$Builder newUriBuilder():208:212 -> m
+    1:2:void onNewIntent(android.content.Intent):128:129 -> onNewIntent
+    1:1:void putModel(org.dplatform.sdk.DataModel):49:49 -> putModel
+    1:1:void putParameter(java.lang.String,java.lang.Object):44:44 -> putParameter
+    1:4:void sendReq():64:67 -> sendReq
+    1:3:void setCallback(org.dplatform.sdk.DPlatformApiCallback):58:60 -> setCallback
+    1:1:void setCheckReqUriListener(org.dplatform.sdk.OnCheckReqUriListener):141:141 -> setCheckReqUriListener
 org.dplatform.sdk.DPlatformApiCallbackActivity -> org.dplatform.sdk.DPlatformApiCallbackActivity:
     1:1:void <init>():12:12 -> <init>
     1:1:java.lang.String access$000():12:12 -> a
@@ -68,9 +68,9 @@ org.dplatform.sdk.DPlatformApiFactory -> org.dplatform.sdk.DPlatformApiFactory:
     1:1:org.dplatform.sdk.DPlatformApi createApi(android.app.Activity,java.lang.String,org.dplatform.sdk.DPlatformEvn):22:22 -> createApi
 org.dplatform.sdk.DPlatformEvn -> org.dplatform.sdk.DPlatformEvn:
     org.dplatform.sdk.DPlatformEvn[] $VALUES -> a
-    1:3:void <clinit>():4:6 -> <clinit>
-    4:4:void <clinit>():3:3 -> <clinit>
-    1:3:void <init>(java.lang.String,int,int,java.lang.String):12:14 -> <init>
+    1:4:void <clinit>():4:7 -> <clinit>
+    5:5:void <clinit>():3:3 -> <clinit>
+    1:3:void <init>(java.lang.String,int,int,java.lang.String):13:15 -> <init>
     1:1:org.dplatform.sdk.DPlatformEvn valueOf(java.lang.String):3:3 -> valueOf
     1:1:org.dplatform.sdk.DPlatformEvn[] values():3:3 -> values
 org.dplatform.sdk.DataModel -> org.dplatform.sdk.DataModel:
@@ -81,8 +81,6 @@ org.dplatform.sdk.DataModel -> org.dplatform.sdk.DataModel:
 org.dplatform.sdk.NullCheck -> org.dplatform.sdk.NullCheck:
     1:1:void <init>():3:3 -> <init>
     1:1:java.lang.Object nonNull(java.lang.Object,java.lang.String):7:7 -> nonNull
-org.dplatform.sdk.OnCheckReqUriListener -> a.a.a.a:
-    boolean isValidReqUri(android.net.Uri) -> a
 org.dplatform.sdk.PayModel -> org.dplatform.sdk.PayModel:
     1:1:void <init>():6:6 -> <init>
     1:1:void setAttrValue(java.lang.String,java.lang.Object):18:18 -> setAttrValue

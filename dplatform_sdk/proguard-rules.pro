@@ -196,3 +196,6 @@
 -keep class org.dplatform.sdk.WithParameter  {
     *;
 }
+-keep class org.dplatform.sdk.OnCheckReqUriListener  {
+    *;
+}
