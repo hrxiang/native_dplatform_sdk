@@ -1,9 +1,10 @@
 package org.dplatform.sdk;
 
 public enum DPlatformEvn {
-    TEST(0, "测试"),
-    PRO(1, "预发"),
-    RELEASE(2, "生产");
+    DEBUG(0, "联调"),
+    TEST(1, "测试"),
+    PRO(2, "预发"),
+    RELEASE(3, "生产");
 
 
     String description;
