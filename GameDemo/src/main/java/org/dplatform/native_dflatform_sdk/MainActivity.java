@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         api.setCheckReqUriListener(new OnCheckReqUriListener() {
             @Override
             public boolean isValidReqUri(Uri uri) {
-                System.out.println("===============uri"+uri.toString());
+                System.out.println("===============uri" + uri.toString());
                 return true;
             }
         });
@@ -82,7 +81,9 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         PayModel model = new PayModel();
         model.setToken("9527");
         model.setOrderSn("no10086");
-        model.setAttrValue("channeNo","10001");
+        model.setChannelNo("10001");
+        model.setUuid("0099991");
+//        model.setAttrValue("channeNo","10001");
         api.putModel(model);
         //发送请求
         api.sendReq();
@@ -97,8 +98,17 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 
     @Override
     public void onClick(View view) {
+//
+//        api.customPlatformPackageName("org.dplatfrom.pro.gc");
+//        api.customPlatformScheme("org.dplatfrom.pro.gc");
+////        api.customCurrentScheme("xyttylusdt");//10000144
+//        api.putParameter("action", "login");
+//        api.putParameter("channelNo", "10000144");
+//        putOtherParams();
+//        api.sendReq();
 
-        String site_ = site.getText().toString();
+        submitOrder2();
+        /*String site_ = site.getText().toString();
         String isMock_ = isMock ? "1" : "0";
         String action_ = isLogin ? "login" : "pay";
         String token_ = token.getText().toString();
@@ -119,8 +129,8 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 
 
         api.getParameters().clear();
-//        api.customPlatformPackageName("org.dplatfrom.pro.gc");
-//        api.customPlatformScheme("org.dplatfrom.pro.gc");
+        api.customPlatformPackageName("org.dplatfrom.pro.gc");
+        api.customPlatformScheme("org.dplatfrom.pro.gc");
 //        api.customCurrentScheme("xyttylusdt");//10000144
         api.putParameter("isMock", isMock_);
         api.putParameter("action", action_);
@@ -141,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 //            api.sendReq();
 //        } else if (view.getId() == R.id.submitH5) {
 //
-//        }
+//        }*/
 
     }
 
@@ -162,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
 
     @Override
     public void onResult(JSONObject object) {
-        System.out.println("============object:"+ (object.opt("code") instanceof Integer));
+        System.out.println("============object:" + (object.opt("code") instanceof Integer));
         result.setText("返回结果：" + object.toString());
     }
 
