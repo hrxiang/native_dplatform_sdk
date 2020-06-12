@@ -28,9 +28,10 @@ final class Encrypt {
         String result = null;
         final HttpURLConnection conn;
         try {
-
             String url = host + "user/app/userCenter/security/createToken";
-//            url = "http://172.29.24.139:8081/user/app/userCenter/security/createToken";
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            System.out.println(">>>>>>>>>>>> request url:" + url);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             // 请求url
             URL postUrl = new URL(url);
             // 打开连接
@@ -50,8 +51,12 @@ final class Encrypt {
             // 连接
             conn.connect();
 
+            String jsonStr = new JSONObject(params).toString();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            System.out.println(">>>>>>>>>>>> request body：" + jsonStr);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-            out.writeBytes(new JSONObject(params).toString());
+            out.writeBytes(jsonStr);
             //流用完记得关
             out.flush();
             out.close();
@@ -65,8 +70,11 @@ final class Encrypt {
                     response.append(line);
                 }
                 reader.close();
-
-                JSONObject jsonObject = new JSONObject(response.toString());
+                String respJsonStr = response.toString();
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                System.out.println(">>>>>>>>>>>> response：" + respJsonStr);
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                JSONObject jsonObject = new JSONObject(respJsonStr);
                 String respCode = jsonObject.optString("respCode");
                 if ("000000".equals(respCode)) {
                     result = jsonObject.optString("data");
@@ -99,7 +107,8 @@ final class Encrypt {
     }
 
     static void go(Activity activity, DPlatformEvn evn, Map<String, Object> param, OnEncryptCallback encryptCallback, DPlatformApiCallback apiCallback) {
-        new NetAsyncTask(activity, evn, encryptCallback, apiCallback).execute(param);
+        NetAsyncTask task = new NetAsyncTask(activity, evn, encryptCallback, apiCallback);
+        task.execute(param);
     }
 
     private final static class NetAsyncTask extends AsyncTask<Map<String, Object>, Void, Map<String, Object>> {

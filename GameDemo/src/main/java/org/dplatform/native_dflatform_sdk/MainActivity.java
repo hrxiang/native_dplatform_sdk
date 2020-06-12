@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         setContentView(R.layout.activity_main);
         initView();
         //创建api，并设置站点 org.dplatform.game.cs
-        api = DPlatformApiFactory.createApi(this, siteStr, DPlatformEvn.DEBUG);
+        api = DPlatformApiFactory.createApi(this, siteStr, DPlatformEvn.TEST);
 
         site.setText(siteStr);
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements DPlatformApiCallb
         api.setCheckReqUriListener(new OnCheckReqUriListener() {
             @Override
             public boolean isValidReqUri(Uri uri) {
-                System.out.println("===============uri" + uri.toString());
+                System.out.println("=========check uri:" + uri.toString());
                 return true;
             }
         });

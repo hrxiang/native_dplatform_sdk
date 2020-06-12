@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         if (null != getIntent()) {
             Uri uri = getIntent().getData();
             if (null != uri) {
-                callbackScheme = uri.getQueryParameter("callbackScheme");
-                packageName = uri.getQueryParameter("packageName");
+//                callbackScheme = uri.getQueryParameter("otherScheme");
+//                packageName = uri.getQueryParameter("packageName");
                 try {
                     object = new JSONObject(uri.getQueryParameter("params"));
                     defaultScheme = object.optString("scheme");

@@ -61,7 +61,7 @@ public final class DPlatformApi {
     }
 
     public void sendReq() {
-        /*Encrypt.go(getActivity(), evn, params, new Encrypt.OnEncryptCallback() {
+        Encrypt.go(getActivity(), evn, params, new Encrypt.OnEncryptCallback() {
             @Override
             public void onEncrypt(Map<String, Object> values) {
                 params.putAll(values);
@@ -71,12 +71,12 @@ public final class DPlatformApi {
                     ac.startActivity(i);
                 }
             }
-        }, callback);*/
-        Activity ac = getActivity();
+        }, callback);
+       /* Activity ac = getActivity();
         if (null != ac) {
             Intent i = new Intent(ac, DPlatformApiCallbackActivity.class);
             ac.startActivity(i);
-        }
+        }*/
     }
 
     public void customPlatformPackageName(String packageName) {
