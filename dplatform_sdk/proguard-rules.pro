@@ -199,3 +199,6 @@
 -keep class org.dplatform.sdk.OnCheckReqUriListener  {
     *;
 }
+-keep class org.dplatform.sdk.Encrypt  {
+    *;
+}
